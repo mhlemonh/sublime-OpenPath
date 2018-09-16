@@ -29,7 +29,7 @@ class OpenPathCommand(sublime_plugin.TextCommand):
         region = sublime.Region(0, self.view.size())
         full_content = self.view.substr(region)
         regex_rules = sublime.load_settings('OpenPath.sublime-settings').get("replacement_regex")
-        self.replacement = {}
+        self.replacement = {"~":os.path.expanduser("~")}
         for regex_rule in regex_rules:
             define_re = re.compile(regex_rule)
             for key, value in define_re.findall(full_content):
